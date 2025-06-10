@@ -29,6 +29,29 @@ php-log-test/
 ```
 
 ---
+## Setup and Running
+
+1. **Build the Docker image locally:**
+    Open your terminal, navigate to the `php-log-test` directory (where your `Dockerfile` and other files are located), and run the following command:
+
+    ```bash
+    docker build -t php-log-test-container .
+    ```
+    This command tells Docker to build an image named `php-log-test-container` using the `Dockerfile` in the current directory (`.`). This process may take a few minutes as it downloads the base Ubuntu image and installs all necessary packages.
+
+2. **Run the Docker container:**
+    Once the image is built, you can start a container from it:
+
+    ```bash
+    docker run -d -p 8080:80 --name php-logger php-log-test-container
+    ```
+    * `-d`: Runs the container in **detached mode**, meaning it runs in the background and doesn't tie up your terminal.
+    * `-p 8080:80`: **Maps port 8080 on your host machine** to port 80 inside the container. This allows you to access the Apache web server (running on port 80 inside the container) from your host's browser via `http://localhost:8080`.
+    * `--name php-logger`: Assigns a human-readable name `php-logger` to your container, making it easier to refer to it in subsequent Docker commands.
+    * `php-log-test-container`: Specifies the name of the Docker image you just built.
+
+---
+
 
 ## Test and Verify
 
