@@ -1,8 +1,8 @@
-# PHP Syslog Logging with Rsyslog and Logrotate in Docker
+# 🚀 PHP Syslog Logging with Rsyslog and Logrotate in Docker
 
 This project demonstrates a robust logging setup for PHP applications within a Dockerized Ubuntu environment. It shows how to send PHP logs via `syslog()`, route them to a custom file using `rsyslog`, and manage that log file's size and retention with `logrotate`. A key focus is on correctly configuring `logrotate`'s `postrotate` script to work reliably in a Docker container.
 
-## Features
+## ✨ Features
 
 * **PHP `syslog()` Integration**: Logs messages from a PHP script directly to the system's syslog daemon.
 * **Custom Rsyslog Routing**: Configures `rsyslog` to filter logs based on a custom identifier (`programname`) and direct them to a dedicated log file.
@@ -12,13 +12,13 @@ This project demonstrates a robust logging setup for PHP applications within a D
 
 ---
 
-## Prerequisites
+## 🛠️ Prerequisites
 
 * **Docker Desktop** (or Docker Engine) installed and running on your local machine.
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 ```
 php-log-test/
 ├── Dockerfile                  # Defines the Docker image
@@ -29,7 +29,7 @@ php-log-test/
 ```
 
 ---
-## Setup and Running
+## 🚀 Setup and Running
 
 1. **Build the Docker image locally:**
     Open your terminal, navigate to the `php-log-test` directory (where your `Dockerfile` and other files are located), and run the following command:
@@ -53,7 +53,7 @@ php-log-test/
 ---
 
 
-## Test and Verify
+## ✅ Test and Verify
 
 Follow these steps to confirm that your logging pipeline is working correctly.
 
@@ -111,7 +111,7 @@ Follow these steps to confirm that your logging pipeline is working correctly.
 
 ---
 
-## Cleanup
+## 🧹  Cleanup
 
 When you're finished testing, stop and remove the container:
 
@@ -120,7 +120,7 @@ docker stop php-logger
 docker rm php-logger
 ```
 
-## Notes and Explanations
+## 📝  Notes and Explanations
 
 * **`openlog()` and `programname`**: The `openlog("my_php_app", ...)` call in `my_app_test.php` sets the `ident` string to "**my\_php\_app**." `rsyslog` picks this up as the `programname` property, allowing `50-my-php-app.conf` to specifically route these logs.
 * **`syslog()` vs. `error_log()`**: `openlog()` and `syslog()` are specifically for sending messages to the system's syslog daemon. `error_log()` generally writes to PHP's error log (often the web server's error log) unless explicitly configured in `php.ini` to go to `syslog`.
