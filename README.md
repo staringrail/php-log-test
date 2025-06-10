@@ -67,7 +67,7 @@ Follow these steps to confirm that your logging pipeline is working correctly.
 
     * **Force a rotation:** In the container's shell (the one where you ran `tail -f`, or a new `docker exec` session), run the `logrotate` command directly:
         ```bash
-    logrotate -f /etc/logrotate.d/my_php_script_log
+            logrotate -f /etc/logrotate.d/my_php_script_log
         ```
         *This command forces `logrotate` to run the rotation regardless of size/time conditions.*
 
