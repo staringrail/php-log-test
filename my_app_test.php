@@ -1,13 +1,18 @@
 <?php
 // Always call openlog() to set the identifier and facility
 // for logs sent via syslog() in this script's execution.
-openlog("my_php_app", LOG_PID, LOG_LOCAL0);
+$ident = 'my_php_app';
+$facility = LOG_LOCAL0;
+openlog($ident, LOG_PID | LOG_NDELAY, $facility);
 
 // Log an informational message
 syslog(LOG_INFO, "Container PHP Log Test: Script executed at " . date('Y-m-d H:i:s'));
 
 // Log a warning message (will also go to the same file)
 syslog(LOG_WARNING, "Container PHP Log Test: A warning occurred at " . date('Y-m-d H:i:s'));
+
+// Log an error message (will also go to the same file)
+syslog(LOG_ERR, "Container PHP Log Test: An error occurred at " . date('Y-m-d H:i:s'));
 
 // Close the syslog connection (good practice for short-lived scripts)
 closelog();
