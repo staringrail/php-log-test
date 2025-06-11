@@ -14,6 +14,10 @@ syslog(LOG_WARNING, "Container PHP Log Test: A warning occurred at " . date('Y-m
 // Log an error message (will also go to the same file)
 syslog(LOG_ERR, "Container PHP Log Test: An error occurred at " . date('Y-m-d H:i:s'));
 
+// Log an emergency message (will also go to the same file)
+syslog(LOG_EMERG, "Container PHP Log Test: An emergency occurred at " . date('Y-m-d H:i:s'));
+
+
 // Close the syslog connection (good practice for short-lived scripts)
 closelog();
 

@@ -17,16 +17,16 @@ RUN apt update && \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy custom rsyslog configuration
-COPY 50-my-php-script.conf /etc/rsyslog.d/50-my-php-script.conf
+COPY 50-my-php-app.conf /etc/rsyslog.d/50-my-php-app.conf
 
 # Copy custom logrotate configuration
-COPY my_php_script_log.conf /etc/logrotate.d/my_php_script_log.conf
+COPY my_php_app_logs.conf /etc/logrotate.d/my_php_app_logs.conf
 
 # Create the log directory and set permissions for rsyslog to write into it
 # rsyslogd-rotate needs /var/log/ to be writable by syslog group
 RUN mkdir -p /var/log/php_logs && \
     chown syslog:adm /var/log/php_logs && \
-    chmod 775 /var/log/php_logs
+    chmod 755 /var/log/php_logs
     # No need to touch the log file itself, rsyslog will create it
 
 # Enable Apache PHP module
